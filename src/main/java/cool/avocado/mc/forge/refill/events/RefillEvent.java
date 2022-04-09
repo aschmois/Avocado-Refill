@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -185,8 +186,8 @@ public class RefillEvent {
         final ItemStack handStack = player.getMainHandItem();
         final InteractionHand hand = InteractionHand.MAIN_HAND; // You can't toss items from the offhand
         Log.debug("onItemToss: " + eventItemStack + " was tossed with " + hand + ". " + handStack.getCount() + " on placed hand before toss.");
-
-        if (handStack.getCount() > 1) {
+        final AbstractContainerMenu menu = player.containerMenu;
+        if (handStack.getCount() > 0 || !menu.getCarried().isEmpty()) {
             return;
         }
 
