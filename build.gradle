@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'cool.avocado.mc.forge'
-version = '0.0.1'
+version = '0.0.2'
 
 ext {
     // Dependencies
@@ -155,13 +155,13 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.59'
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${jeiVersion}")
-    runtimeOnly fg.deobf("curse.maven:configured-457570:${configuredVersion}")
+//    runtimeOnly fg.deobf("mezz.jei:jei-${jeiVersion}")
+//    runtimeOnly fg.deobf("curse.maven:configured-457570:${configuredVersion}")
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}")
+//    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}:api")
 
-    runtimeOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
+//    runtimeOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
     compileOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
