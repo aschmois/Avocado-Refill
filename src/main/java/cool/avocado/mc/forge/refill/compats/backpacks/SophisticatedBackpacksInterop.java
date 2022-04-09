@@ -4,8 +4,8 @@ import cool.avocado.mc.forge.refill.utils.InventoryUtils;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
-import net.p3pp3rf1y.sophisticatedbackpacks.api.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
