@@ -15,7 +15,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -58,8 +58,8 @@ public class RefillEvent {
     }
 
     @SubscribeEvent
-    public void onWorldTick(TickEvent.WorldTickEvent e) {
-        if (getLevelOnServer(e.world) == null || e.phase.equals(TickEvent.Phase.START))
+    public void onWorldTick(TickEvent.LevelTickEvent e) {
+        if (getLevelOnServer(e.level) == null || e.phase.equals(TickEvent.Phase.START))
             return;
 
         Interaction curr = queue.poll();
@@ -88,7 +88,7 @@ public class RefillEvent {
     @SubscribeEvent(priority = LOWEST)
     public void onEntityPlace(BlockEvent.EntityPlaceEvent e) {
         final Player player;
-        if (getLevelOnServer(e.getWorld()) == null || (player = getSurvivalPlayer(e.getEntity())) == null)
+        if (getLevelOnServer(e.getLevel()) == null || (player = getSurvivalPlayer(e.getEntity())) == null)
             return;
 
         final Inventory inv = player.getInventory();
@@ -181,7 +181,7 @@ public class RefillEvent {
 
         final Inventory inv = player.getInventory();
 
-        final ItemStack eventItemStack = e.getEntityItem().getItem();
+        final ItemStack eventItemStack = e.getEntity().getItem();
         final Item eventItem = eventItemStack.getItem();
         final ItemStack handStack = player.getMainHandItem();
         final InteractionHand hand = InteractionHand.MAIN_HAND; // You can't toss items from the offhand
@@ -212,7 +212,7 @@ public class RefillEvent {
     @SubscribeEvent(priority = LOWEST)
     public void onRightClickItem(PlayerInteractEvent.RightClickItem e) {
         final Player player;
-        if ((player = getSurvivalPlayer(e.getPlayer())) == null || getLevelOnServer(e.getWorld()) == null)
+        if ((player = getSurvivalPlayer(e.getEntity())) == null || getLevelOnServer(e.getLevel()) == null)
             return;
 
         final Inventory inv = player.getInventory();

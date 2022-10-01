@@ -15,14 +15,15 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'cool.avocado.mc.forge'
-version = '0.0.2'
+version = '1.9.2-1.0'
 
 ext {
     // Dependencies
-    curiosVersion = '1.18.1-5.0.5.0'
-    sophisticatedBackpacksVersion = '3693291' // https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/3693291 3.15.15.550
-    jeiVersion = '1.18.1:9.2.3.78'
-    configuredVersion = '3559398' // https://www.curseforge.com/minecraft/mc-mods/configured/files/3559398 1.5.1-1.18.1
+    curiosVersion = '1.19.2-5.1.1.0'
+    sophisticatedBackpacksVersion = '4006090' // https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/4006090 1.19.2-3.18.29.719
+    sophisticatedCoreVersion = '4006087' // https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/4006087 1.19.2-0.5.12.130
+    jeiVersion = '1.19.2-forge:11.3.0.262'
+    configuredVersion = '4011355' // https://www.curseforge.com/minecraft/mc-mods/configured/files/4011355 2.0.1-1.19.2
 }
 
 java {
@@ -42,7 +43,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.19.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -153,16 +154,19 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.59'
+    minecraft 'net.minecraftforge:forge:1.19.2-43.1.32'
 
-//    runtimeOnly fg.deobf("mezz.jei:jei-${jeiVersion}")
-//    runtimeOnly fg.deobf("curse.maven:configured-457570:${configuredVersion}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jeiVersion}")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:${configuredVersion}")
 
-//    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}:api")
 
-//    runtimeOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
+    runtimeOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
     compileOnly fg.deobf("curse.maven:sophisticated-backpacks-422301:${sophisticatedBackpacksVersion}")
+
+    runtimeOnly fg.deobf("curse.maven:sophisticated-core-618298:${sophisticatedCoreVersion}")
+    compileOnly fg.deobf("curse.maven:sophisticated-core-618298:${sophisticatedCoreVersion}")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
